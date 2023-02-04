@@ -15,11 +15,16 @@ public class PlayerMovement : MonoBehaviour{
     public Color color;
     public GameObject treePrefab;
     public float spawnSize = 100;
+    [SerializeField]
+    private AudioSource musicPlayerCollectCoin;
+    [SerializeField]
+    private AudioSource musicPlayerPlant;
 
     private Image restBarSlider;
     private float newRestBarScale;
     public Rigidbody rb;
-    private int score = 0;
+    private int coinsCount = 0;
+    private int treesCount = 0;
     private int treeCost = 5;
 
     public Vector3 previousePosition;
@@ -63,12 +68,14 @@ public class PlayerMovement : MonoBehaviour{
             newRestBarScale = (Math.Max(restingDurationRemains, 0) / fullRestTime) * 100;
             this.restBarSlider.rectTransform.sizeDelta = new Vector2(newRestBarScale, currentSize.y);
 
-            if (isResting && newRestBarScale == 0 && this.score >= treeCost && ! this.isPlanted){
+            if (isResting && newRestBarScale == 0 && this.coinsCount >= treeCost && ! this.isPlanted){
+                musicPlayerPlant.Play();
                 Vector3 spawnPosition = this.transform.position;
                 GameObject spawnedTree = Instantiate(treePrefab, spawnPosition, Quaternion.identity);
                 spawnedTree.transform.localScale *= spawnSize;
+                this.treesCount += 1;
 
-                this.score -= treeCost;
+                this.coinsCount -= treeCost;
                 this.isPlanted = true;
             }
         }
@@ -85,16 +92,17 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     private void SetScoresText(){
-        textScore.text = "Score: " + this.score.ToString();
+        textScore.text = "Coins: " + this.coinsCount.ToString() + "\n" +
+                         "Trees: " + this.treesCount.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Collectable"))  // other.CompareTag("Collectable"))
         {
-            this.score++;
+            musicPlayerCollectCoin.Play();
+            this.coinsCount++;
             Destroy(other.gameObject);
-            Debug.Log("Score: " + score);
         }
         
     }

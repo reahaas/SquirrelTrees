@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "17071JECB05526",
         "name": "com.DefaultCompany.SquirrelTrees",
-        "processId": 4009,
+        "processId": 6558,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -90,6 +90,24 @@
             "deviceId": "17071JECB05526",
             "name": "com.DefaultCompany.SquirrelTrees",
             "processId": 4009,
+            "exited": false
+        },
+        {
+            "deviceId": "17071JECB05526",
+            "name": "com.DefaultCompany.SquirrelTrees",
+            "processId": 4732,
+            "exited": false
+        },
+        {
+            "deviceId": "17071JECB05526",
+            "name": "com.DefaultCompany.SquirrelTrees",
+            "processId": 5354,
+            "exited": false
+        },
+        {
+            "deviceId": "17071JECB05526",
+            "name": "com.DefaultCompany.SquirrelTrees",
+            "processId": 6558,
             "exited": false
         }
     ],

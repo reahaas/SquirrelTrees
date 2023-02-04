@@ -7,10 +7,12 @@ public class CoinSpawnerScript : MonoBehaviour
     [SerializeField]
     private GameObject coinPrefab;
     [SerializeField]
-    private float spawnInterval = 2f;
+    private float spawnInterval = 1f;
     [SerializeField]
     private float spawnSize = 1f;
-    
+    [SerializeField]
+    private AudioSource musicPlayerInstantiateCoin;
+
     private void Start()
     {
         InvokeRepeating("SpawnCoin", 0f, spawnInterval);
@@ -18,6 +20,7 @@ public class CoinSpawnerScript : MonoBehaviour
     
     void SpawnCoin()
     {
+        musicPlayerInstantiateCoin.Play();
         float x = Random.Range(-6.8f, 6.8f);
         float y = 0f;
         float z = Random.Range(-3.8f, 3.8f);
