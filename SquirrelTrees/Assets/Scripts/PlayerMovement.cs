@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerTouchMovement : MonoBehaviour{
+public class PlayerMovement : MonoBehaviour{
     public float speed;
     public GameObject playerPanel;
     public TextMeshProUGUI textScore;
