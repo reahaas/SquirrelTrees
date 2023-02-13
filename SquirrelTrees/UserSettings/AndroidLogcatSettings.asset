@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "17071JECB05526",
     "m_SelectedPackage": {
-        "deviceId": "17071JECB05526",
-        "name": "com.DefaultCompany.SquirrelTrees",
-        "processId": 6558,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,104 +11,26 @@
         {
             "deviceId": "17071JECB05526",
             "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 30348,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 31408,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 31880,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 13526,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 13949,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 16833,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 17429,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 24827,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 26656,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 6574,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 8919,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 23776,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
-            "processId": 1715,
-            "exited": false
-        },
-        {
-            "deviceId": "17071JECB05526",
-            "name": "com.DefaultCompany.SquirrelTrees",
             "processId": 4009,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "17071JECB05526",
             "name": "com.DefaultCompany.SquirrelTrees",
             "processId": 4732,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "17071JECB05526",
             "name": "com.DefaultCompany.SquirrelTrees",
             "processId": 5354,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "17071JECB05526",
             "name": "com.DefaultCompany.SquirrelTrees",
             "processId": 6558,
-            "exited": false
+            "exited": true
         }
     ],
     "m_Tags": {

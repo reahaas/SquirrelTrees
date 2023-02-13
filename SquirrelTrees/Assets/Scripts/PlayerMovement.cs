@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour{
     public GameObject treePrefab;
     public float spawnSize = 100;
     [SerializeField]
+    private string playerName = "";
+    [SerializeField]
     private AudioSource musicPlayerCollectCoin;
     [SerializeField]
     private AudioSource musicPlayerPlant;
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour{
     private int coinsCount = 0;
     private int treesCount = 0;
     private int treeCost = 5;
+    private int winningTreeCount = 10;
 
     public Vector3 previousePosition;
 
@@ -74,6 +77,10 @@ public class PlayerMovement : MonoBehaviour{
                 GameObject spawnedTree = Instantiate(treePrefab, spawnPosition, Quaternion.identity);
                 spawnedTree.transform.localScale *= spawnSize;
                 this.treesCount += 1;
+
+                if (this.treesCount >= winningTreeCount){
+                    GameManagerScript.gameOver(this.playerName);
+                } 
 
                 this.coinsCount -= treeCost;
                 this.isPlanted = true;
