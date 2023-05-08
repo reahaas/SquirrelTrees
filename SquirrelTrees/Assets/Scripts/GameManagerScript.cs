@@ -21,6 +21,8 @@ public class GameManagerScript : MonoBehaviour
 
     private TextMeshProUGUI textGameOver;
     private Button resetGameButton;
+    private Button SetTwoPlayersModeButton;
+    private Button SetFourPlayersModeButton;
     private static bool _isGameOver = false;
     private static string winnerName = "";
 
@@ -33,8 +35,19 @@ public class GameManagerScript : MonoBehaviour
         gameOverCanvas.enabled = false;
         this.textGameOver = gameOverCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
-        this.resetGameButton = gameOverCanvas.GetComponentInChildren<Button>();
+        Button [] gameOverButtons = gameOverCanvas.GetComponentsInChildren<Button>();
+
+        // this.resetGameButton = gameOverCanvas.GetComponentInChildren<Button>();
+        this.resetGameButton = gameOverButtons[0];
         resetGameButton.onClick.AddListener(resetGame);
+
+        // this.SetTwoPlayersModeButton = gameOverCanvas.GetComponentInChildren<Button>();
+        this.SetTwoPlayersModeButton = gameOverButtons[1];
+        SetTwoPlayersModeButton.onClick.AddListener(setTwoPlayersMode);
+
+        // this.SetFourPlayersModeButton = gameOverCanvas.GetComponentInChildren<Button>();
+        this.SetFourPlayersModeButton = gameOverButtons[2];
+        SetFourPlayersModeButton.onClick.AddListener(setFourPlayersMode);
 
         this.fourPlayersModeObjects.Add(player3);
         this.fourPlayersModeObjects.Add(player3Panel);
@@ -64,6 +77,16 @@ public class GameManagerScript : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
+    }
+
+    public void setTwoPlayersMode(){
+        playerMode = 2;
+        setPlayersMode();
+    }
+    
+    public void setFourPlayersMode(){
+        playerMode = 4;
+        setPlayersMode();
     }
 
     public void setPlayersMode(){  
