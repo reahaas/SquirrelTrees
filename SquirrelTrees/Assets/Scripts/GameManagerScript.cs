@@ -9,10 +9,23 @@ public class GameManagerScript : MonoBehaviour
 {
     [SerializeField]
     private Canvas gameOverCanvas;
+
+    [SerializeField]
+    private GameObject player3;
+    [SerializeField]
+    private GameObject player3Panel;
+    [SerializeField]
+    private GameObject player4;
+    [SerializeField]
+    private GameObject player4Panel;
+
     private TextMeshProUGUI textGameOver;
     private Button resetGameButton;
     private static bool _isGameOver = false;
     private static string winnerName = "";
+
+    private static int playerMode = 2;
+    private List<GameObject> fourPlayersModeObjects = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +35,12 @@ public class GameManagerScript : MonoBehaviour
 
         this.resetGameButton = gameOverCanvas.GetComponentInChildren<Button>();
         resetGameButton.onClick.AddListener(resetGame);
+
+        this.fourPlayersModeObjects.Add(player3);
+        this.fourPlayersModeObjects.Add(player3Panel);
+        this.fourPlayersModeObjects.Add(player4);
+        this.fourPlayersModeObjects.Add(player4Panel);
+        setPlayersMode();
     }
 
     // Update is called once per frame
@@ -45,6 +64,19 @@ public class GameManagerScript : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
+    }
+
+    public void setPlayersMode(){  
+        if (playerMode == 2){
+            foreach(GameObject obj in this.fourPlayersModeObjects){
+                obj.SetActive(false);
+            }
+        }
+        else{
+            foreach(GameObject obj in this.fourPlayersModeObjects){
+                obj.SetActive(true);
+            }
+        }
     }
 
 }
