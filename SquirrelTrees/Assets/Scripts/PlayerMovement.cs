@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour{
     private int coinsCount = 0;
     private int treesCount = 0;
     private int treeCost = 5;
-    private int winningTreeCount = 10;
+    private int winningTreeCount = 1;
 
     public Vector3 previousePosition;
 

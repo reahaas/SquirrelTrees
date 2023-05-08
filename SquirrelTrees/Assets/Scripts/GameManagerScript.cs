@@ -23,7 +23,7 @@ public class GameManagerScript : MonoBehaviour
     private Button resetGameButton;
     private Button SetTwoPlayersModeButton;
     private Button SetFourPlayersModeButton;
-    private static bool _isGameOver = false;
+    private static bool _isGameRunning = false;
     private static string winnerName = "";
 
     private static int playerMode = 2;
@@ -59,7 +59,7 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isGameOver){
+        if (! _isGameRunning){
             gameOverCanvas.enabled = true;
             this.textGameOver.text = "GameOver" + "\n" + "Winner Name: " + winnerName;
             Time.timeScale = 0;
@@ -68,12 +68,12 @@ public class GameManagerScript : MonoBehaviour
 
     public static void gameOver(string winner){
         winnerName = winner;
-        _isGameOver = true;
+        _isGameRunning = false;
     }
 
     public void resetGame()
     {
-        _isGameOver = false;
+        _isGameRunning = true;
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
