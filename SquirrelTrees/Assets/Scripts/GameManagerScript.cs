@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManagerScript : MonoBehaviour
 {
     [SerializeField]
-    private Canvas gameOverCanvas;
+    private Canvas mainMenuCanvas;
 
     [SerializeField]
     private GameObject player3;
@@ -19,8 +19,8 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     private GameObject player4Panel;
 
-    private TextMeshProUGUI textGameOver;
-    private Button resetGameButton;
+    private TextMeshProUGUI mainMenuText;
+    private Button startGameButton;
     private Button SetTwoPlayersModeButton;
     private Button SetFourPlayersModeButton;
     private static bool _isGameRunning = false;
@@ -32,21 +32,18 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameOverCanvas.enabled = false;
-        this.textGameOver = gameOverCanvas.GetComponentInChildren<TextMeshProUGUI>();
+        this.mainMenuCanvas.enabled = false;
+        this.mainMenuText = this.mainMenuCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
-        Button [] gameOverButtons = gameOverCanvas.GetComponentsInChildren<Button>();
+        Button [] mainMenuButtons = this.mainMenuCanvas.GetComponentsInChildren<Button>();
 
-        // this.resetGameButton = gameOverCanvas.GetComponentInChildren<Button>();
-        this.resetGameButton = gameOverButtons[0];
-        resetGameButton.onClick.AddListener(resetGame);
+        this.startGameButton = mainMenuButtons[0];
+        startGameButton.onClick.AddListener(resetGame);
 
-        // this.SetTwoPlayersModeButton = gameOverCanvas.GetComponentInChildren<Button>();
-        this.SetTwoPlayersModeButton = gameOverButtons[1];
+        this.SetTwoPlayersModeButton = mainMenuButtons[1];
         SetTwoPlayersModeButton.onClick.AddListener(setTwoPlayersMode);
 
-        // this.SetFourPlayersModeButton = gameOverCanvas.GetComponentInChildren<Button>();
-        this.SetFourPlayersModeButton = gameOverButtons[2];
+        this.SetFourPlayersModeButton = mainMenuButtons[2];
         SetFourPlayersModeButton.onClick.AddListener(setFourPlayersMode);
 
         this.fourPlayersModeObjects.Add(player3);
@@ -60,8 +57,8 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         if (! _isGameRunning){
-            gameOverCanvas.enabled = true;
-            this.textGameOver.text = "GameOver" + "\n" + "Winner Name: " + winnerName;
+            this.mainMenuCanvas.enabled = true;
+            this.mainMenuText.text = "GameOver" + "\n" + "Winner Name: " + winnerName;
             Time.timeScale = 0;
         }
     }
