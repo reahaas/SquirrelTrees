@@ -56,9 +56,11 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (! _isGameRunning){
+        if (! _isGameRunning && Time.timeScale != 0){
             this.mainMenuCanvas.enabled = true;
-            this.mainMenuText.text = "GameOver" + "\n" + "Winner Name: " + winnerName;
+            if (winnerName != ""){
+                this.mainMenuText.text = "GameOver" + "\n" + "Winner: " + winnerName;
+            }
             Time.timeScale = 0;
         }
     }
