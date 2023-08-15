@@ -9,8 +9,8 @@ public class CoinFloatingScript : MonoBehaviour
     public float rotationSpeed = 20f;
     private Vector3 startPosition;
     
-    [SerializeField]
-    private GameObject coin;
+    //[SerializeField]
+    //private GameObject coin;
 
     private void Start()
     {
@@ -20,8 +20,8 @@ public class CoinFloatingScript : MonoBehaviour
     private void Update()
     {
         float y = startPosition.y + floatStrength * Mathf.Sin(Time.time * speed)/4;
-        this.coin.transform.position = new Vector3(startPosition.x, y, startPosition.z);
+        this.transform.position = new Vector3(startPosition.x, y, startPosition.z);
 
-        this.coin.transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);
+        this.transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);
     }
 }
