@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e90850d01ad5454ca531943c4e179e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 8736993223824009949, guid: a62c427fd6369e44d91f1beed6ed18f4,
+  coinPrefab: {fileID: 8736993223824009949, guid: 34c9ea334bf8736488460ff3a3b1a3e8,
     type: 3}
   spawnInterval: 1
   spawnSize: 1
