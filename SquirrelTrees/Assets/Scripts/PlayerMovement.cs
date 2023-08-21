@@ -28,7 +28,8 @@ public class PlayerMovement : MonoBehaviour{
     private int coinsCount = 0;
     private int treesCount = 0;
     private int treeCost = 5;
-    private int winningTreeCount = 10;
+    private int treeScoreValue = 10;
+    private int winningScore = 50;
 
     public Vector3 previousePosition;
 
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour{
                 spawnedTree.transform.localScale *= spawnSize;
                 this.treesCount += 1;
 
-                if (this.treesCount >= winningTreeCount){
+                if (this.isWinning()){
                     GameManagerScript.gameOver(this.playerName);
                 } 
 
@@ -110,7 +111,16 @@ public class PlayerMovement : MonoBehaviour{
             musicPlayerCollectCoin.Play();
             this.coinsCount++;
             Destroy(other.gameObject);
+
+            if (this.isWinning()){
+                GameManagerScript.gameOver(this.playerName);
+            }
         }
         
+    }
+    private bool isWinning(){
+        int treeScore = this.treesCount * this.treeScoreValue;
+        int totalScore = treeScore + this.coinsCount;
+        return (totalScore >= this.winningScore);
     }
 }
