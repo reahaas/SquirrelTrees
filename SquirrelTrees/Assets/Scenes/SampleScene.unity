@@ -3585,6 +3585,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 399932421}
     m_Modifications:
+    - target: {fileID: 9197661353515766546, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_text
+      value: '<sprite name="Acorn_emoji_score"> 3
+
+        <sprite name="Tree_emoji_score">
+        4'
+      objectReference: {fileID: 0}
     - target: {fileID: 9197661353573574138, guid: e3e76351a42eccf48a77c2ba37b1adf4,
         type: 3}
       propertyPath: m_Pivot.x

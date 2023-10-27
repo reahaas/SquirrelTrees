@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour{
     private Image restBarSlider;
     private float newRestBarScale;
     public Rigidbody rb;
+
+    private string acornSymbol = "<sprite name=\"Acorn_emoji_score\">";
+    private string treeSymbol = "<sprite name=\"Tree_emoji_score\">";
     private int coinsCount = 0;
     private int treesCount = 0;
     private int treeCost = 5;
@@ -81,7 +84,7 @@ public class PlayerMovement : MonoBehaviour{
                 
                 this.coinsCount -= treeCost;
                 this.isPlanted = true;
-                
+
                 if (this.isWinning()){
                     GameManagerScript.gameOver(this.playerName);
                 } 
@@ -100,8 +103,8 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     private void SetScoresText(){
-        textScore.text = "Coins: " + this.coinsCount.ToString() + "\n" +
-                         "Trees: " + this.treesCount.ToString();
+        textScore.text = acornSymbol + this.coinsCount.ToString() + "\n" +
+                         treeSymbol + this.treesCount.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
