@@ -78,13 +78,13 @@ public class PlayerMovement : MonoBehaviour{
                 GameObject spawnedTree = Instantiate(treePrefab, spawnPosition, Quaternion.identity);
                 spawnedTree.transform.localScale *= spawnSize;
                 this.treesCount += 1;
-
+                
+                this.coinsCount -= treeCost;
+                this.isPlanted = true;
+                
                 if (this.isWinning()){
                     GameManagerScript.gameOver(this.playerName);
                 } 
-
-                this.coinsCount -= treeCost;
-                this.isPlanted = true;
             }
         }
         
