@@ -53,8 +53,20 @@ public class PlayerMovement : MonoBehaviour{
         restingDurationRemains = fullRestTime;
     }
 
+    private bool fallFromBoard(){
+        return this.gameObject.transform.position.y <= -5;
+    }
+
+    private void sendToStartPosition(){
+        this.gameObject.transform.position = new Vector3(0,3,0);
+    }
+
     void Update(){        
         Debug.Log("Player distance" + Vector3.Distance(previousePosition, this.transform.position).ToString());
+
+        if (this.fallFromBoard()){
+            this.sendToStartPosition();
+        }
         
         if (Vector3.Distance(this.previousePosition, this.transform.position) > 0.01f){
             restingDurationRemains = fullRestTime;
