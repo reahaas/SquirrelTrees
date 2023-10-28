@@ -636,7 +636,6 @@ MonoBehaviour:
   textScore: {fileID: 1987115443}
   fixedJoystick: {fileID: 187667712}
   restBarCanvas: {fileID: 1994533631}
-  color: {r: 0, g: 0, b: 0, a: 0}
   treePrefab: {fileID: 1275406482163546, guid: e9cf4d348f645425d886588cf0507f06, type: 3}
   spawnSize: 100
   playerName: Green
@@ -1497,6 +1496,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPanel_3
       objectReference: {fileID: 0}
+    - target: {fileID: 2419423821997699165, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423821997699165, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423821997699165, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423822218966107, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423822218966107, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423822218966107, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02f2ef1dc65a7fc4485401f69f59e4a9, type: 3}
 --- !u!114 &616717058 stripped
@@ -1853,7 +1882,6 @@ MonoBehaviour:
   textScore: {fileID: 2116740779}
   fixedJoystick: {fileID: 616717058}
   restBarCanvas: {fileID: 1555822529}
-  color: {r: 0, g: 0, b: 0, a: 0}
   treePrefab: {fileID: 1275406482163546, guid: e9cf4d348f645425d886588cf0507f06, type: 3}
   spawnSize: 100
   playerName: Purple
@@ -2054,7 +2082,6 @@ MonoBehaviour:
   textScore: {fileID: 870296654}
   fixedJoystick: {fileID: 1390162160}
   restBarCanvas: {fileID: 808011932}
-  color: {r: 0, g: 0, b: 0, a: 0}
   treePrefab: {fileID: 1998414442720552, guid: cff8451bbd4a54e8c9eaf369037e93bf, type: 3}
   spawnSize: 100
   playerName: Blue
@@ -3585,6 +3612,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 399932421}
     m_Modifications:
+    - target: {fileID: 6269682670655567944, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670655567944, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670655567944, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670908226638, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670908226638, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670908226638, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9197661353515766546, guid: e3e76351a42eccf48a77c2ba37b1adf4,
         type: 3}
       propertyPath: m_text
@@ -4347,7 +4404,6 @@ MonoBehaviour:
   textScore: {fileID: 437429876}
   fixedJoystick: {fileID: 1415695744}
   restBarCanvas: {fileID: 838186256}
-  color: {r: 0, g: 0, b: 0, a: 0}
   treePrefab: {fileID: 1275406482163546, guid: e9cf4d348f645425d886588cf0507f06, type: 3}
   spawnSize: 100
   playerName: Red
@@ -5128,6 +5184,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPanel_4
       objectReference: {fileID: 0}
+    - target: {fileID: 2419423821997699165, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423821997699165, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423821997699165, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423822218966107, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423822218966107, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419423822218966107, guid: 02f2ef1dc65a7fc4485401f69f59e4a9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02f2ef1dc65a7fc4485401f69f59e4a9, type: 3}
 --- !u!1 &1942785045
@@ -5507,6 +5593,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 399932421}
     m_Modifications:
+    - target: {fileID: 6269682670655567944, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670655567944, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670655567944, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670908226638, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670908226638, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269682670908226638, guid: e3e76351a42eccf48a77c2ba37b1adf4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9197661353573574138, guid: e3e76351a42eccf48a77c2ba37b1adf4,
         type: 3}
       propertyPath: m_Pivot.x

@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour{
     public TextMeshProUGUI textScore;
     public FixedJoystick fixedJoystick;
     public Canvas restBarCanvas;
-    public Color color;
     public GameObject treePrefab;
     public float spawnSize = 100;
     [SerializeField]
