@@ -44,21 +44,64 @@ public class PlayerMovement : MonoBehaviour{
         this.textScore = playerPanel.GetComponentInChildren<TextMeshProUGUI>();
         this.fixedJoystick = playerPanel.GetComponentInChildren<FixedJoystick>();
         this.restBarSlider = restBarCanvas.GetComponentInChildren<Image>();
-        this.restBarCanvas.enabled = false;
-        this.isPlanted = false;
-
-        SetScoresText();
-        this.previousePosition = this.transform.position;
-        isResting = true;
-        restingDurationRemains = fullRestTime;
+        
+        this.setMotionParameters();
+        this.SetScoresText();
     }
 
     private bool fallFromBoard(){
-        return this.gameObject.transform.position.y <= -5;
+        return this.transform.position.y <= -5;
     }
 
     private void sendToStartPosition(){
-        this.gameObject.transform.position = new Vector3(0,3,0);
+        this.transform.position = new Vector3(0,3,0);
+    }
+
+    private bool isInMotion(){
+        return Vector3.Distance(this.previousePosition, this.transform.position) > 0.01f;
+    }
+
+    private void setMotionParameters(){
+        this.restingDurationRemains = this.fullRestTime;
+        this.isResting = false;
+        this.restBarCanvas.enabled = false;
+        this.isPlanted = false;
+        
+        this.previousePosition = this.transform.position;
+    }
+
+    private void setRestingParameters(){
+        this.restingDurationRemains -= Time.deltaTime;
+        this.isResting = true;
+        this.restBarCanvas.enabled = true;
+        
+        Vector2 currentSize = this.restBarSlider.rectTransform.sizeDelta;
+        this.newRestBarScale = (Math.Max(restingDurationRemains, 0) / fullRestTime) * 100;
+        this.restBarSlider.rectTransform.sizeDelta = new Vector2(this.newRestBarScale, currentSize.y);
+    }
+
+    private bool isPlantingFinised(){
+        return this.isResting && 
+               this.newRestBarScale == 0 && 
+               this.coinsCount >= this.treeCost && 
+               ! this.isPlanted;
+    }
+
+    private void plantTree(){
+        this.musicPlayerPlant.Play();
+        Vector3 spawnPosition = this.transform.position;
+        GameObject spawnedTree = Instantiate(this.treePrefab, spawnPosition, Quaternion.identity);
+        spawnedTree.transform.localScale *= this.spawnSize;
+        this.treesCount += 1;
+        
+        this.coinsCount -= this.treeCost;
+        this.isPlanted = true;
+    }
+
+    private void judgeTheGame(){
+        if (this.isWinning()){
+            GameManagerScript.gameOver(this.playerName);
+        } 
     }
 
     void Update(){        
@@ -68,49 +111,26 @@ public class PlayerMovement : MonoBehaviour{
             this.sendToStartPosition();
         }
         
-        if (Vector3.Distance(this.previousePosition, this.transform.position) > 0.01f){
-            restingDurationRemains = fullRestTime;
-            isResting = false;
-            this.restBarCanvas.enabled = false;
-            this.isPlanted = false;
-            
-            this.previousePosition = this.transform.position;
+        if (this.isInMotion()){
+            this.setMotionParameters();
         }
         else
         {
-            restingDurationRemains -= Time.deltaTime;
-            isResting = true;
-            this.restBarCanvas.enabled = true;
-            
-            Vector2 currentSize = this.restBarSlider.rectTransform.sizeDelta;
-            newRestBarScale = (Math.Max(restingDurationRemains, 0) / fullRestTime) * 100;
-            this.restBarSlider.rectTransform.sizeDelta = new Vector2(newRestBarScale, currentSize.y);
+            this.setRestingParameters();
 
-            if (isResting && newRestBarScale == 0 && this.coinsCount >= treeCost && ! this.isPlanted){
-                musicPlayerPlant.Play();
-                Vector3 spawnPosition = this.transform.position;
-                GameObject spawnedTree = Instantiate(treePrefab, spawnPosition, Quaternion.identity);
-                spawnedTree.transform.localScale *= spawnSize;
-                this.treesCount += 1;
-                
-                this.coinsCount -= treeCost;
-                this.isPlanted = true;
-
-                if (this.isWinning()){
-                    GameManagerScript.gameOver(this.playerName);
-                } 
+            if (this.isPlantingFinised()){
+                this.plantTree();
+                this.judgeTheGame();
             }
         }
         
-
         if (Math.Abs(fixedJoystick.Vertical) >= 0.2f || Math.Abs(fixedJoystick.Horizontal) >= 0.2f){
             Vector3 direction = Vector3.forward * fixedJoystick.Vertical + 
                                 Vector3.right * fixedJoystick.Horizontal;
-            transform.position = transform.position + direction * speed * Time.deltaTime;
-            transform.forward = direction;
+            this.transform.position = this.transform.position + direction * speed * Time.deltaTime;
+            this.transform.forward = direction;
         }
-        SetScoresText();
-
+        this.SetScoresText();
     }
 
     private void SetScoresText(){
@@ -120,18 +140,17 @@ public class PlayerMovement : MonoBehaviour{
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Collectable"))  // other.CompareTag("Collectable"))
+        if (other.CompareTag("Collectable"))
         {
             musicPlayerCollectCoin.Play();
             this.coinsCount++;
             Destroy(other.gameObject);
-
-            if (this.isWinning()){
-                GameManagerScript.gameOver(this.playerName);
-            }
+            
+            this.SetScoresText();
+            this.judgeTheGame();
         }
-        
     }
+
     private bool isWinning(){
         int treeScore = this.treesCount * this.treeScoreValue;
         int totalScore = treeScore + this.coinsCount;
