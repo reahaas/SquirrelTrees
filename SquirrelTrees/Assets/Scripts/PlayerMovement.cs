@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour{
 
     private string acornSymbol = "<sprite name=\"Acorn_emoji_score\">";
     private string treeSymbol = "<sprite name=\"Tree_emoji_score\">";
+    [SerializeField]
     private int coinsCount = 0;
     private int treesCount = 0;
     private int nextProgressScore = 10;
@@ -141,8 +142,6 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     void Update(){        
-        Debug.Log("Player distance" + Vector3.Distance(previousePosition, this.transform.position).ToString());
-
         if (this.fallFromBoard()){
             this.sendToStartPosition();
         }

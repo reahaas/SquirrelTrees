@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class GameManagerScript : MonoBehaviour
 {
     [SerializeField]
+    private InterstitialAd interstitialAd;
+    
+    [SerializeField]
     private Canvas mainMenuCanvas;
 
     [SerializeField]
@@ -92,8 +95,8 @@ public class GameManagerScript : MonoBehaviour
     {
         _isGameRunning = true;
         Time.timeScale = 1.0f;
+        this.interstitialAd.ShowAd();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
     }
 
     public void setTwoPlayersMode(){
