@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using EasyUI.Toast;
 
 
 public class PlayerMovement : MonoBehaviour{
@@ -25,10 +26,13 @@ public class PlayerMovement : MonoBehaviour{
     private float newRestBarScale;
     public Rigidbody rb;
 
+    private Color playerColor;
+
     private string acornSymbol = "<sprite name=\"Acorn_emoji_score\">";
     private string treeSymbol = "<sprite name=\"Tree_emoji_score\">";
     private int coinsCount = 0;
     private int treesCount = 0;
+    private int nextProgressScore = 10;
     private int treeCost = 5;
     private int treeScoreValue = 10;
     private int winningScore = 50;
@@ -44,9 +48,12 @@ public class PlayerMovement : MonoBehaviour{
         this.textScore = playerPanel.GetComponentInChildren<TextMeshProUGUI>();
         this.fixedJoystick = playerPanel.GetComponentInChildren<FixedJoystick>();
         this.restBarSlider = restBarCanvas.GetComponentInChildren<Image>();
+        this.playerColor = this.fixedJoystick.GetComponent<Image>().color;
         
         this.setMotionParameters();
         this.SetScoresText();
+
+        Debug.Log("Player name:" + this.playerName + " color: " + playerColor);
     }
 
     private bool fallFromBoard(){
@@ -98,7 +105,36 @@ public class PlayerMovement : MonoBehaviour{
         this.isPlanted = true;
     }
 
+    private int getAlmostWinScore(){
+        return this.winningScore - 5;
+    }
+
+    private bool isBigProgress(){
+        int currentScore = this.calculateScore();
+
+        if (currentScore >= this.nextProgressScore){
+            this.nextProgressScore += 10;
+            return true;
+        } 
+        if (currentScore > this.getAlmostWinScore()){
+            return true;
+        }
+        return false;
+    }
+
+    private void toastProgress(){
+        int currentScore = this.calculateScore();
+        string toastText = "Score: " + currentScore;
+        if (currentScore > this.getAlmostWinScore()){
+            toastText += ", WOW!";
+        }
+        Toast.Show(toastText, this.playerColor, ToastPosition.MiddleCenter);
+    }
+
     private void judgeTheGame(){
+        if(this.isBigProgress()){
+            this.toastProgress();
+        }
         if (this.isWinning()){
             GameManagerScript.gameOver(this.playerName);
         } 
@@ -151,9 +187,13 @@ public class PlayerMovement : MonoBehaviour{
         }
     }
 
-    private bool isWinning(){
+    private int calculateScore(){
         int treeScore = this.treesCount * this.treeScoreValue;
-        int totalScore = treeScore + this.coinsCount;
+        return treeScore + this.coinsCount;
+    }
+
+    private bool isWinning(){
+        int totalScore = this.calculateScore();
         return (totalScore >= this.winningScore);
     }
 }
