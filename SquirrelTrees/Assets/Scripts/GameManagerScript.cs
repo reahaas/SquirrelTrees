@@ -143,4 +143,9 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    public void QuitGame(){
+        Debug.Log("Application Quit");
+        Application.Quit();
+    }
+
 }
