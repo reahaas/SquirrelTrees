@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using EasyUI.Toast;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public class GameManagerScript : MonoBehaviour
     private Button SetThreePlayersModeButton;    
     private Button SetFourPlayersModeButton;
     private static bool _isGameRunning = false;
-    private static string winnerName = "";
+    private static string winnerText = "";
+    private static Color winnerColor = new Color(1,1,1);  // White
 
     // playerMode must be static to survive the scene reload on reset game!!
     private static int playerMode = 2;
@@ -79,15 +81,26 @@ public class GameManagerScript : MonoBehaviour
     {
         if (! _isGameRunning && Time.timeScale != 0){
             this.mainMenuCanvas.enabled = true;
-            if (winnerName != ""){
-                this.mainMenuText.text = "GameOver" + "\n" + "Winner: " + winnerName;
+            if (winnerText != ""){
+                this.mainMenuText.text = winnerText;
+                this.mainMenuText.color = winnerColor;
             }
             Time.timeScale = 0;
         }
+
+        if(Input.GetKeyDown("space")){
+            Debug.Log("Test mode: End game");
+            winnerText = "asdf";
+            winnerColor = Color.black;
+            this.mainMenuText.text = winnerText;
+            this.mainMenuText.color = winnerColor;  
+            _isGameRunning = false;    
+        }
     }
 
-    public static void gameOver(string winner){
-        winnerName = winner;
+    public static void gameOver(string winner, Color color){
+        winnerText = winner;
+        winnerColor = color;
         _isGameRunning = false;
     }
 
