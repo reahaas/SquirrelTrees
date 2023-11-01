@@ -8,6 +8,7 @@ using EasyUI.Toast;
 
 
 public class PlayerMovement : MonoBehaviour{
+    public TextUtils textUtils;
     public float speed;
     public GameObject playerPanel;
     public TextMeshProUGUI textScore;
@@ -28,8 +29,6 @@ public class PlayerMovement : MonoBehaviour{
 
     private Color playerColor;
 
-    private string acornSymbol = "<sprite name=\"Acorn_emoji_score\">";
-    private string treeSymbol = "<sprite name=\"Tree_emoji_score\">";
     [SerializeField]
     private int coinsCount = 0;
     private int treesCount = 0;
@@ -55,6 +54,11 @@ public class PlayerMovement : MonoBehaviour{
         this.SetScoresText();
 
         Debug.Log("Player name:" + this.playerName + " color: " + playerColor);
+        
+        if (Application.platform == RuntimePlatform.WindowsEditor){
+            Debug.Log("Game in Editor Mode!");
+	        winningScore = 10;
+        }
     }
 
     private bool fallFromBoard(){
@@ -137,7 +141,12 @@ public class PlayerMovement : MonoBehaviour{
             this.toastProgress();
         }
         if (this.isWinning()){
-            GameManagerScript.gameOver(this.playerName);
+            int currentScore = this.calculateScore();
+            string winnerPlayerText = "Winner: " + this.playerName + "! Score: " + currentScore;
+            string scoreDelimiter = "     ";
+            winnerPlayerText += "\n" + textUtils.getScoreText(this.coinsCount, this.treesCount, scoreDelimiter); 
+            
+            GameManagerScript.gameOver(winnerPlayerText, this.playerColor);
         } 
     }
 
@@ -169,8 +178,7 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     private void SetScoresText(){
-        textScore.text = acornSymbol + this.coinsCount.ToString() + "\n" +
-                         treeSymbol + this.treesCount.ToString();
+        textScore.text = textUtils.getScoreText(this.coinsCount, this.treesCount);
     }
 
     private void OnTriggerEnter(Collider other)
