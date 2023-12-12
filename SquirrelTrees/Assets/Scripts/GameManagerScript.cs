@@ -32,6 +32,8 @@ public class GameManagerScript : MonoBehaviour
     private static string winnerText = "";
     private static Color winnerColor = new Color(1,1,1);  // White
 
+    private static int leadingScore;
+
     // playerMode must be static to survive the scene reload on reset game!!
     private static int playerMode = 2;
     private List<GameObject> fourPlayersModeObjects = new List<GameObject>();
@@ -44,6 +46,7 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManagerScript.leadingScore = 0;
         this.mainMenuCanvas.enabled = false;
         this.mainMenuText = this.mainMenuCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -110,6 +113,14 @@ public class GameManagerScript : MonoBehaviour
         Time.timeScale = 1.0f;
         this.interstitialAd.ShowAd();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public static bool isLeading(int playerScore){
+        if(playerScore > GameManagerScript.leadingScore){
+            GameManagerScript.leadingScore = playerScore;
+            return true;
+        }
+        return false;
     }
 
     public void setTwoPlayersMode(){
