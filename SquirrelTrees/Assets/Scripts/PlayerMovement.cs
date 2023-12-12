@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour{
     public FixedJoystick fixedJoystick;
     public Canvas restBarCanvas;
     public GameObject treePrefab;
+    private GameObject crown;
     public float spawnSize = 100;
     [SerializeField]
     private string playerName = "";
@@ -43,12 +44,14 @@ public class PlayerMovement : MonoBehaviour{
     private float restingDurationRemains;
     private Boolean isResting;
     private Boolean isPlanted;
+    private bool isLeading;
 
     void Start(){
         this.textScore = playerPanel.GetComponentInChildren<TextMeshProUGUI>();
         this.fixedJoystick = playerPanel.GetComponentInChildren<FixedJoystick>();
         this.restBarSlider = restBarCanvas.GetComponentInChildren<Image>();
         this.playerColor = this.fixedJoystick.GetComponent<Image>().color;
+        this.isLeading = false;
         
         this.setMotionParameters();
         this.SetScoresText();
@@ -136,9 +139,29 @@ public class PlayerMovement : MonoBehaviour{
         Toast.Show(toastText, this.playerColor, ToastPosition.MiddleCenter);
     }
 
+    private void markLeading(){
+        crown = GameObject.Find("Crown");
+
+        float playerHight = 0.5f;
+        float new_y_value = this.transform.position.y + playerHight;
+        crown.GetComponent<FloatingScript>().set_reference_y(new_y_value);
+        crown.transform.position = new Vector3(this.transform.position.x, new_y_value, this.transform.position.z);
+        
+        Transform playerPelvis = this.transform.Find("DogPBR/root/pelvis");
+
+        crown.transform.SetParent(playerPelvis);
+    }
+
     private void judgeTheGame(){
         if(this.isBigProgress()){
             this.toastProgress();
+        }
+        if(!this.isLeading && GameManagerScript.isLeading(this.calculateScore())){
+            this.isLeading = true;
+            this.markLeading();
+        }
+        else{
+            this.isLeading = false;
         }
         if (this.isWinning()){
             int currentScore = this.calculateScore();
