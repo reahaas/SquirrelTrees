@@ -15,6 +15,9 @@ public class GameManagerScript : MonoBehaviour
     private Canvas mainMenuCanvas;
 
     [SerializeField]
+    private Canvas pauseCanvas;
+
+    [SerializeField]
     private GameObject player3;
     [SerializeField]
     private GameObject player3Panel;
@@ -48,6 +51,7 @@ public class GameManagerScript : MonoBehaviour
     {
         GameManagerScript.leadingScore = 0;
         this.mainMenuCanvas.enabled = false;
+        this.pauseCanvas.enabled = false;
         this.mainMenuText = this.mainMenuCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         Button [] mainMenuButtons = this.mainMenuCanvas.GetComponentsInChildren<Button>();
@@ -82,6 +86,10 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Menu))
+        {
+            pause_game();
+        }
         if (! _isGameRunning && Time.timeScale != 0){
             this.mainMenuCanvas.enabled = true;
             if (winnerText != ""){
@@ -99,6 +107,11 @@ public class GameManagerScript : MonoBehaviour
             this.mainMenuText.color = winnerColor;  
             _isGameRunning = false;    
         }
+    }
+
+    public void pause_game(){
+        this.pauseCanvas.enabled = true;
+        Time.timeScale = 0;
     }
 
     public static void gameOver(string winner, Color color){
