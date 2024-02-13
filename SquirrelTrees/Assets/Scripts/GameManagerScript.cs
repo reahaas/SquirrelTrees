@@ -88,15 +88,15 @@ public class GameManagerScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Menu))
         {
-            pause_game();
+            if (Time.timeScale == 0){
+                QuitGame();
+            }
+            else{
+                pauseGame();
+            }
         }
         if (! _isGameRunning && Time.timeScale != 0){
-            this.mainMenuCanvas.enabled = true;
-            if (winnerText != ""){
-                this.mainMenuText.text = winnerText;
-                this.mainMenuText.color = winnerColor;
-            }
-            Time.timeScale = 0;
+            stopGame();
         }
 
         if(Input.GetKeyDown("space")){
@@ -109,9 +109,27 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    public void pause_game(){
+    public void stopGame(){
+        this.mainMenuCanvas.enabled = true;
+        this.pauseCanvas.enabled = false;
+        if (winnerText != ""){
+            this.mainMenuText.text = winnerText;
+            this.mainMenuText.color = winnerColor;
+        }
+        Time.timeScale = 0.0f;
+    }
+
+    public void pauseGame(){
+        Debug.Log("pauseGame called");
+        this.mainMenuCanvas.enabled = false;
         this.pauseCanvas.enabled = true;
-        Time.timeScale = 0;
+        Time.timeScale = 0.0f;
+    }
+
+    public void resumeGame(){
+        Debug.Log("resumeGame called");
+        this.pauseCanvas.enabled = false;
+        Time.timeScale = 1.0f;
     }
 
     public static void gameOver(string winner, Color color){
@@ -122,6 +140,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void resetGame()
     {
+        Debug.Log("resetGame called");
         _isGameRunning = true;
         Time.timeScale = 1.0f;
         this.interstitialAd.ShowAd();
