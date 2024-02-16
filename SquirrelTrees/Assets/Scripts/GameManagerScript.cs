@@ -110,6 +110,7 @@ public class GameManagerScript : MonoBehaviour
     }
 
     public void stopGame(){
+        
         this.mainMenuCanvas.enabled = true;
         this.pauseCanvas.enabled = false;
         if (winnerText != ""){
