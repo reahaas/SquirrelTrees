@@ -123,9 +123,9 @@ public class GameManagerScript : MonoBehaviour
         Debug.Log("pauseGame called");
         this.mainMenuCanvas.enabled = false;
         this.pauseCanvas.enabled = true;
-        if (Toast.isLoaded){
-            Toast.Dismiss();
-        }
+        // if (Toast.isLoaded){
+        Toast.Dismiss();
+        // }
         
         Time.timeScale = 0.0f;
     }

@@ -110,7 +110,8 @@ namespace EasyUI.Toast {
 
 
       public static void Dismiss () {
-         toastUI.Dismiss () ; 
+         if (isLoaded)
+            toastUI.Dismiss () ; 
       }
 
    }
