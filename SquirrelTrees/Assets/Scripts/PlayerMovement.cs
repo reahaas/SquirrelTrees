@@ -5,6 +5,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 using EasyUI.Toast;
+using DG.Tweening;
 
 
 public class PlayerMovement : MonoBehaviour{
@@ -45,8 +46,10 @@ public class PlayerMovement : MonoBehaviour{
     private Boolean isResting;
     private Boolean isPlanted;
     private bool isLeading;
+    private Vector3 initialPosition;
 
     void Start(){
+        this.initialPosition = transform.position;
         this.textScore = playerPanel.GetComponentInChildren<TextMeshProUGUI>();
         this.fixedJoystick = playerPanel.GetComponentInChildren<FixedJoystick>();
         this.restBarSlider = restBarCanvas.GetComponentInChildren<Image>();
@@ -69,7 +72,7 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     private void sendToStartPosition(){
-        this.transform.position = new Vector3(0,3,0);
+        this.transform.position = this.initialPosition + new Vector3(0,3,0);
     }
 
     private bool isInMotion(){
@@ -210,7 +213,11 @@ public class PlayerMovement : MonoBehaviour{
         {
             musicPlayerCollectCoin.Play();
             this.coinsCount++;
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Collider>().enabled = false;
+            other.gameObject.transform.DOJump(this.initialPosition, 1, 1, 1).OnComplete(()=>
+            {
+                Destroy(other.gameObject);
+            });
             
             this.SetScoresText();
             this.judgeTheGame();
